@@ -4,19 +4,17 @@ class Solution:
         max_len = max(len(a), len(b))
         matching = ""
         
-        # Iterate over each possible starting position in `b`
-        for k in range(min_length):
-            p = k  # Start from each position in `b`
-            current_match = ""  # Temporary string to store the current match
+        for k in range(len(a)):
+            current_match = ""
+            p = 0  # Always start from the beginning of `b` for each new starting position in `a`
 
-            # Traverse the longer string `a` to find matching characters
-            for i in range(max_len):
+            for i in range(k, max_len):
+                # Make sure we stay within bounds for both `a` and `b`
                 if p < min_length and a[i] == b[p]:  # Compare character at `a[i]` and `b[p]`
                     current_match += a[i]
                     p += 1  # Move to the next character in `b`
                 else:
-                    p = k  # Reset `p` to the start position in `b`
-                    break  # Break if there's no match to start fresh in the next outer loop iteration
+                    break  # Break if there's no match
 
             # Update `matching` with the longest pattern found so far
             if len(current_match) > len(matching):
@@ -25,8 +23,8 @@ class Solution:
         return matching
 
 # Example usage
-s1 = "ABBABCABAB"
-s2 = "ABC"
+s1 = "ABABABAB"
+s2 = "BAB"
 
 solution = Solution()
-print(solution.find_longest_common_pattern(s1, s2))  # Expected output: "AB"
+print(solution.find_longest_common_pattern(s1, s2))  # Expected output: "BAB"
