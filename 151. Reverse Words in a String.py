@@ -13,7 +13,7 @@ class Solution(object):
       temp1 = " ".join(temp1)
       temp1 = temp1.split()
 
-      temp1 = ", ".join(temp1)
+      temp1 = " ".join(temp1)
       return [temp1]
 
 s = "  Bob    Loves    Alice  "
